@@ -3,7 +3,7 @@ layout: post
 title:  "Booting Kali Linux in UEFI, when the online guides fail."
 date:   2017-04-26 06:34:25
 categories: "Linux"
-tags: featured
+tags: 
 image: /assets/article_images/2017-04-27-booting_kali_linux_in_uefi/kali.jpg
 ---
 Recently I installed Linux Mint on my laptop after years of being a windows user, it was quite the learning curve. I decided to install a secondary linux distribution to disk incase anything untoward happened to my file system. I chose Kali linux to be that distribution, as most aspiring nerds do I day dreamed of ethical hacking and general I.T badassery. All these dreams came to a crashing halt when I struggled for hours to get the image to boot via UEFI from my USB thumbstick. 
