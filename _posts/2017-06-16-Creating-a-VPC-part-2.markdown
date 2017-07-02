@@ -3,7 +3,7 @@ layout: post
 title:  "Creating a VPC in AWS part 2"
 date:   2017-06-16 14:34:25
 categories: AWS
-tags:
+tags: featured
 image: /assets/article_images/VPC/cloud-cartoon.jpg
 ---
 # Creating a single NAT instance and Bastion Host/Jump Box in our VPC from [Part 1]({{ site.url }}/aws/2017/05/16/Creating-a-VPC-part-1.html "Part 1")

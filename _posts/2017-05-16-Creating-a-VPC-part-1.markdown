@@ -3,7 +3,7 @@ layout: post
 title:  "Creating a VPC in AWS part 1"
 date:   2017-05-16 14:34:25
 categories: AWS
-tags: featured
+tags:
 image: /assets/article_images/VPC/cloud-cartoon.jpg
 ---
 # Creating a VPC in AWS with public and private subnets.
