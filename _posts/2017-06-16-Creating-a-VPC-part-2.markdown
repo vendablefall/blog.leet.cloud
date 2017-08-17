@@ -6,7 +6,7 @@ categories: AWS
 tags:
 image: /assets/article_images/VPC/cloud-cartoon.jpg
 ---
-# Creating a single NAT instance and Bastion Host/Jump Box in our VPC from [Part 1]({{ site.url }}/aws/2017/05/16/Creating-a-VPC-part-1.html "Part 1")
+# Creating a single NAT instance and Bastion Host/Jump Box in our VPC from [Part 1]({{ site.url }}/aws/2017/05/17/Creating-a-VPC-part-1.html "Part 1")
 <br>
 Today we will be adding EC2 instances to each of the subents we made inside the VPC last time. We will then test the connectivity between the subnets and finally add a NAT instance to the public subnet to get internet access from inside the private subnet, Lets get started.
 
