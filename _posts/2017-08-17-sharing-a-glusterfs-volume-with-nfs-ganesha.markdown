@@ -1,15 +1,15 @@
 ---
 layout: post
-title:  "Sharing a Glusterfs volume with NFS-Ganesha on CentOS7"
+title:  "Sharing a GlusterFS volume with NFS-Ganesha on CentOS-7"
 date:   2017-08-17 06:34:25
 categories: "Linux"
-tags: 
+tags: featured
 image: /assets/article_images/glusterfs-ganesha/glusterfs-ant.png
 ---
 
-Hello again! today on pebkac we are creating a two node GlusterFS cluster on CentOS7 to host a highly available NFSv4 share. The volume (Glusterfs terminoligy for the virtualised disk group spread across CentOS nodes) will handle the file replication and locking. The volume will be shared out with nfs-Ganesha enabling the automatic failover of the NFS share, in the event that the node you have mounted the share on... dissapears.
+Hello again! today on pebkac we are creating a two node GlusterFS cluster on CentOS-7 to host a highly available NFSv4 share. The volume (Glusterfs terminoligy for the virtualised disk group spread across CentOS nodes) will handle the file replication and locking. The volume will be shared out with nfs-Ganesha enabling the automatic failover of the NFS share, in the event that the node you have mounted the share on... dissapears.
 
-If your looking for a great guide to get you started i suggest you go to this post by [kkeithley](http://blog.gluster.org/2015/10/linux-scale-out-nfsv4-using-nfs-ganesha-and-glusterfs-one-step-at-a-time/) and complete the first two steps. I found that kkeithleys blog worked for the first two steps "crawl and "walk", but I couldnt manage to complete the "run" section.  This blog is more intended to be a continuation from kkeithlets post above adressing the areas where the Glusterfs [3.9 release](https://gluster.readthedocs.io/en/latest/release-notes/3.9.0/) changed things.
+If your looking for a great guide to get you started I suggest you go to this post by [kkeithley](http://blog.gluster.org/2015/10/linux-scale-out-nfsv4-using-nfs-ganesha-and-glusterfs-one-step-at-a-time/) and complete the first two steps. I found that kkeithleys blog worked for the first two steps "crawl and "walk", but I couldnt manage to complete the "run" section.  This blog is more intended to be a continuation from kkeithlets post above adressing the areas where the Glusterfs [3.9 release](https://gluster.readthedocs.io/en/latest/release-notes/3.9.0/) changed things.
 
 Starting with two centos7 nodes in the same subnet with a second drive at /dev/sdb (if you dont you may have to adjust my files appropriatley) 
  
