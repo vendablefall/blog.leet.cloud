@@ -30,4 +30,4 @@ When the day finaly came, I was ready, i had deployed 5+ ESXi + vCenter envrionm
 
 I passed the exam with 400/500 about 80% which i was quite happy with as the pass mark was 60%, the satisfaction that comes with passing an exam you have put that much effort into studying for in your own time is priceless, one of the best feelings ever. I hope you get to know that feeling soon :-).
 
-Stay tuned to find out which cert I decided to go with second [here]({{ site.url }}/study/2017/04/21/Studying_for_AWS_CSA_exam.html "My Second Exam")
+Stay tuned to find out which cert I decided to go with second!
