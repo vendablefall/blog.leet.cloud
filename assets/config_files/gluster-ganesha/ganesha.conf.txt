@@ -10,7 +10,7 @@ EXPORT
         # Exporting FSAL 
        FSAL { 
             Name = GLUSTER; 
-            Hostname = Node1; 
+            Hostname = localhost; 
             Volume = simple; 
             } 
         # Pseudo Path (required for NFS v4) 
