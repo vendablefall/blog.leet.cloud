@@ -139,4 +139,4 @@ When you are presented with the popup below click the blue "Yes, Disable" button
 
 [![]({{ site.url }}/assets/article_images/VPC2/35-NAT-source-dest-check-2.PNG)]({{ site.url }}/assets/article_images/VPC2/35-NAT-source-dest-check-2.PNG)
 
-Thats all for today, but join me in [Part 3]({{ site.url }}/aws/2017/07/16/Creating-a-VPC-part-3.html "Part 3") for testing of the configuration.
+Thats all for today, but join me in [Part 3]({{ site.url }}/aws/2017/11/14/Creating-a-VPC-part-3.html "Part 3") for testing of the configuration.
