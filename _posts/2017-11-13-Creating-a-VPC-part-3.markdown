@@ -9,14 +9,14 @@ image: /assets/article_images/VPC/cloud-cartoon.jpg
 **Testing the VPC we deployed in [Part 2]({{ site.url }}/aws/2017/06/17/Creating-a-VPC-part-2.html "Part 2")**
 <br>
 <br>
-Today in the third and final installation in our series we will be testing the VPC using the instances we deployed last time, to ensure everything is working properly. We will then enable internet traffic to the private subnet via our NAT instance, enough talking, lets get started.
+Today in the third and final installation in our series we will be testing the VPC using the instances we deployed last time, to ensure everything is working properly. We will then enable internet traffic to the private subnet via our NAT instance, enough talking, let us get started.
 
-(Sorry about the delay in this post, my other blog www.littlekiwibus.com has been taking allot of my time recently leading to pebkac being neglected :-( )
+(Sorry for the delay in this post, my other blog www.littlekiwibus.com has been taking a lot of my time recently leading to pebkac being neglected :-( )
 
-I was using Windows10 as my OS for this guide which made puttygen necessary, if you are using a Linux distro or MacOS you can skip the first 4 steps. Instead of putty to ssh you can just use the inbuilt terminal! (I have since swapped my primary OS to Linux Mint so no longer need putty and puttygen). To download Putty go [http://www.putty.org](here) and make sure you include PuttyGen. 
+I was using Windows10 as my OS for this guide which made puttygen necessary if you are using a Linux distro or MacOS you can skip the first 4 steps. Instead of putty to ssh, you can just use the inbuilt terminal! (I have since swapped my primary OS to Linux Mint so no longer need putty and puttygen). To download Putty go [http://www.putty.org](here) and make sure you include PuttyGen. 
 
 
-Below we see the Putty Gen GUI, youl want to "Load" your .pem file supplied by AWS, click Load, and locate your .pem file.
+Below we see the Putty Gen GUI, you'll want to "Load" your .pem file supplied by AWS, click Load, and locate your .pem file.
 
 [![]({{ site.url }}/assets/article_images/VPC3/36-puttygen.PNG)]({{ site.url }}/assets/article_images/VPC3/36-puttygen.PNG)
 
@@ -48,7 +48,7 @@ You should now see the below Security Alert, click "Yes" to accept the certifica
 
 [![]({{ site.url }}/assets/article_images/VPC3/38-putty-accept.PNG)]({{ site.url }}/assets/article_images/VPC3/38-putty-accept.PNG)
 
-You should now see the a SSH session just like below.
+You should now see the SSH session just like below.
 
 [![]({{ site.url }}/assets/article_images/VPC3/39-ssh-login.PNG)]({{ site.url }}/assets/article_images/VPC3/39-ssh-login.PNG)
 
@@ -60,7 +60,7 @@ Your output should match the screenshot below.
 
 [![]({{ site.url }}/assets/article_images/VPC3/40-ssh-commands.PNG)]({{ site.url }}/assets/article_images/VPC3/40-ssh-commands.PNG)
 
-Here I found the Private IP for "MyPrivateInstance" in the AWS console (10.10.2.143), and confirmed that the two instances have imcp cponnectivity by running:
+Here I found the Private IP for "MyPrivateInstance" in the AWS console (10.10.2.143), and confirmed that the two instances have imcp connectivity by running:
     ping 10.10.2.143
 From my SSH session. 
 
@@ -69,11 +69,11 @@ From my SSH session.
 I now confirm internet connectivity by running:
     sudo su
     yum update
-(the quick amongst us will realise just by virtue of loggin into this instance we conifmed internet connectivity, but it never hurt to be throrough.)
+(the quick amongst us will realise just by virtue of logging into this instance we confirmed internet connectivity, but it never hurt to be thorough.)
 
 [![]({{ site.url }}/assets/article_images/VPC3/41-sucessful-yum-update-1.PNG)]({{ site.url }}/assets/article_images/VPC3/41-sucessful-yum-update-1.PNG)
 
-Here iI enter "n" as I am not really interested in the update, I just wanted to verify connection to the internet.
+Here I will enter "n" as I am not really interested in the update, I just wanted to verify a connection to the internet.
 
 [![]({{ site.url }}/assets/article_images/VPC3/41-sucessful-yum-update-2.PNG)]({{ site.url }}/assets/article_images/VPC3/41-sucessful-yum-update-2.PNG)
 
@@ -82,7 +82,7 @@ We are half way people! Now to test the private instance! Here we locate the .pe
 [![]({{ site.url }}/assets/article_images/VPC3/42-copy-pem-contents.PNG)]({{ site.url }}/assets/article_images/VPC3/42-copy-pem-contents.PNG)
 
 Open it with your text editor of choice and copy the contents, making sure not to copy any excess whitespace.
-(normally iw ould do this with winscp, or just scp in linux, but this was the "quickand dirty way i got it going before my exam)
+(normally I would do this with WinSCP, or just scp in Linux, but this was the "quick and dirty way I got it going before my exam)
 
 [![]({{ site.url }}/assets/article_images/VPC3/42-copy-pem-contents-2.PNG)]({{ site.url }}/assets/article_images/VPC3/42-copy-pem-contents-2.PNG)
 
@@ -117,11 +117,11 @@ Here we run the following, to open another SSH session (to our private instance)
 
 [![]({{ site.url }}/assets/article_images/VPC3/45-ssh-into-private.PNG)]({{ site.url }}/assets/article_images/VPC3/45-ssh-into-private.PNG)
 
-Yoiu should then see the below warning, accept the key by typring in "yes".
+You should then see the below warning, accept the key by typing in "yes".
 
 [![]({{ site.url }}/assets/article_images/VPC3/45-ssh-into-private-2.PNG)]({{ site.url }}/assets/article_images/VPC3/45-ssh-into-private-2.PNG)
 
-Your screen should now look like the below image, Notice how the top two lines state a 10.10.1.241 host (MyPublicInstance) while the bottom line states 10.10.2.143 (MyPrivateInstance), we are now inside our privatge instance!.
+Your screen should now look like the below image, Notice how the top two lines state a 10.10.1.241 host (MyPublicInstance) while the bottom line states 10.10.2.143 (MyPrivateInstance), we are now inside our private instance!.
 
 [![]({{ site.url }}/assets/article_images/VPC3/45-ssh-into-private-3.PNG)]({{ site.url }}/assets/article_images/VPC3/45-ssh-into-private-3.PNG)
 
@@ -135,7 +135,7 @@ Here we run into a connectivity error, we have no access to the internet! fear n
 
 [![]({{ site.url }}/assets/article_images/VPC3/46-private-commands-2.PNG)]({{ site.url }}/assets/article_images/VPC3/46-private-commands-2.PNG)
 
-The reason we couldnt reach out from "MyPrivateInstance" is because we havnt yet setup a route for that traffic to reach out. Go back to the AWS console, inside the VPC dashboard and select the "Route Tables" tab, Click "Create Route Table".
+The reason we couldn't reach out from "MyPrivateInstance" is that we haven't yet set up a route for that traffic to reach out. Go back to the AWS console, inside the VPC dashboard and select the "Route Tables" tab, Click "Create Route Table".
 
 [![]({{ site.url }}/assets/article_images/VPC3/47-route-table-menu.PNG)]({{ site.url }}/assets/article_images/VPC3/47-route-table-menu.PNG)
 
@@ -147,7 +147,7 @@ Once the Route Table is created, select the "Route" tab, then "Edit", enter 0.0.
 
 [![]({{ site.url }}/assets/article_images/VPC3/48-route-table-settings-2.PNG)]({{ site.url }}/assets/article_images/VPC3/48-route-table-settings-2.PNG)
 
-You should now see the green "Save Sucessful" just like my screeen shot below.
+You should now see the green "Save Successful" just like my screenshot below.
 
 [![]({{ site.url }}/assets/article_images/VPC3/48-route-table-settings-3.PNG)]({{ site.url }}/assets/article_images/VPC3/48-route-table-settings-3.PNG)
 
@@ -155,11 +155,11 @@ Move over to the "Subnet Associations" tab and select the checkbox next to MyPri
 
 [![]({{ site.url }}/assets/article_images/VPC3/48-route-table-settings-4.PNG)]({{ site.url }}/assets/article_images/VPC3/48-route-table-settings-4.PNG)
 
-You should now see the green "Save Sucessful" like my screenshot below. We should now be able to route from our private subnet through our NAT instance and to the internet!
+You should now see the green "Save Successful" like my screenshot below. We should now be able to route from our private subnet through our NAT instance and to the internet!
 
 [![]({{ site.url }}/assets/article_images/VPC3/48-route-table-settings-5.PNG)]({{ site.url }}/assets/article_images/VPC3/48-route-table-settings-5.PNG)
 
-Go back to your SSH session and try update again:
+Go back to your SSH session and try the update again:
     yum update
 
 [![]({{ site.url }}/assets/article_images/VPC3/50-private-yum-update.PNG)]({{ site.url }}/assets/article_images/VPC3/50-private-yum-update.PNG)
@@ -168,7 +168,7 @@ This time we should see yum accessing the appropriate repos as below.
 
 [![]({{ site.url }}/assets/article_images/VPC3/50-private-yum-update-2.PNG)]({{ site.url }}/assets/article_images/VPC3/50-private-yum-update-2.PNG)
 
-If your screen looks like mine, we have now verified internet connectivity from our private subnet through our NAT instance. **Hurrah!** If you have followed along this whole time you can give youself a big pat on the back, as this process is one of the funidmentals that allot of AWS services depend on. Now we will go through cleaning out everything so we dont get a nasty bill in a month or so.
+If your screen looks like mine, we have now verified internet connectivity from our private subnet through our NAT instance. **Hurrah!** If you have followed along this whole time you can give yourself a big pat on the back, as this process is one of the fundamentals that allot of AWS services depend on. Now we will go through cleaning out everything so we don't get a nasty bill in a month or so.
 
 [![]({{ site.url }}/assets/article_images/VPC3/50-private-yum-update-3.PNG)]({{ site.url }}/assets/article_images/VPC3/50-private-yum-update-3.PNG)
 

@@ -8,7 +8,7 @@ image: /assets/article_images/VPC/cloud-cartoon.jpg
 ---
 # Creating a single NAT instance and Bastion Host/Jump Box in our VPC from [Part 1]({{ site.url }}/aws/2017/05/17/Creating-a-VPC-part-1.html "Part 1")
 <br>
-Today we will be adding EC2 instances to each of the subents we made inside the VPC last time. We will then test the connectivity between the subnets and finally add a NAT instance to the public subnet to get internet access from inside the private subnet, Lets get started.
+Today we will be adding EC2 instances to each of the subnets we made inside the VPC last time. We will then test the connectivity between the subnets and finally add a NAT instance to the public subnet to get internet access from inside the private subnet, Let us get started.
 
 Firstly, log in your the AWS console using your account, then navigate to the EC2 console, under the "Compute" heading, (you can see it in the top left corner, in the below image")
 
@@ -34,23 +34,23 @@ Leave all the settings as default and click "Next: Add Tags"
 
 [![]({{ site.url }}/assets/article_images/VPC2/26-launch-priv-ec2-5.PNG)]({{ site.url }}/assets/article_images/VPC2/26-launch-priv-ec2-5.PNG)
 
-For the Key enter "Name" and Value enter "MyPrivateInstance" then click "Next: Configure Security Group"
+For the Key enter, "Name" and Value enter "MyPrivateInstance" then click "Next: Configure Security Group"
 
 [![]({{ site.url }}/assets/article_images/VPC2/26-launch-priv-ec2-6.PNG)]({{ site.url }}/assets/article_images/VPC2/26-launch-priv-ec2-6.PNG)
 
-Click "Select and existing security group", then make sure MyPrivate-SecurityGroup is selected and click "Review and Launch".
+Click "Select an existing security group", then make sure MyPrivate-SecurityGroup is selected and click "Review and Launch".
 
 [![]({{ site.url }}/assets/article_images/VPC2/26-launch-priv-ec2-7.PNG)]({{ site.url }}/assets/article_images/VPC2/26-launch-priv-ec2-7.PNG)
 
-Use this chance to check over your configuration and ensure the details are correct. Once you are sure click the blue "Launch" button in the bottom right.
+Use this chance to check your configuration and ensure the details are correct. Once you are sure, click the blue "Launch" button in the bottom right.
 
 [![]({{ site.url }}/assets/article_images/VPC2/26-launch-priv-ec2-8.PNG)]({{ site.url }}/assets/article_images/VPC2/26-launch-priv-ec2-8.PNG)
 
-You will be propted with the popup shown below, from the first dropdown select "Create a new key pair" and name it "MyExampleVPCKEY". Click "Download key pair" and save it in a location that is easy to access (we will need this later)Once that is done click "Launch Instances"
+You will be prompted with the popup shown below, from the first drop-down select "Create a new key pair" and name it "MyExampleVPCKEY". Click "Download key pair" and save it in a location that is easy to access (we will need this later)Once that is done click "Launch Instances"
 
 [![]({{ site.url }}/assets/article_images/VPC2/27-my-key-pair.PNG)]({{ site.url }}/assets/article_images/VPC2/27-my-key-pair.PNG)
 
-You should then be presented with a screen closely resembling the below image. Click the blue "View Instances" button int he bottom right. Then click "Launch Instance" again to start configuring the deployment of our second EC2 instance.
+You should then be presented with a screen closely resembling the below image. Click the blue "View Instances" button in the bottom right. Then click "Launch Instance" again to start configuring the deployment of our second EC2 instance.
 
 [![]({{ site.url }}/assets/article_images/VPC2/28-my-instance-launch.PNG)]({{ site.url }}/assets/article_images/VPC2/28-my-instance-launch.PNG)
 
@@ -66,23 +66,23 @@ Leave all the settings as default and click "Next: Add Tags"
 
 [![]({{ site.url }}/assets/article_images/VPC2/26-launch-priv-ec2-5.PNG)]({{ site.url }}/assets/article_images/VPC2/26-launch-priv-ec2-5.PNG)
 
-For the Key enter "Name" and Value enter "MyPublicInstance" then click "Next: Configure Security Group"
+For the Key enter, "Name" and Value enter "MyPublicInstance" then click "Next: Configure Security Group"
 
 [![]({{ site.url }}/assets/article_images/VPC2/29-launch-public-ec2-2.PNG)]({{ site.url }}/assets/article_images/VPC2/29-launch-public-ec2-2.PNG)
 
-Click "Select and existing security group", then make sure MyPublic-SecurityGroup is selected and click "Review and Launch".
+Click "Select an existing security group", then make sure MyPublic-SecurityGroup is selected and click "Review and Launch".
 
 [![]({{ site.url }}/assets/article_images/VPC2/29-launch-public-ec2-3.PNG)]({{ site.url }}/assets/article_images/VPC2/29-launch-public-ec2-3.PNG)
 
-This time we will be using the same Key as last time, so make sure you select "Choose and existing key pair" and select "MyExampleVPCKEY" that we made before, Click "Launch Instances".
+This time we will be using the same Key as last time, so make sure you select "Choose an existing key pair" and select "MyExampleVPCKEY" that we made before, Click "Launch Instances".
 
 [![]({{ site.url }}/assets/article_images/VPC2/30-my-key-pair.PNG)]({{ site.url }}/assets/article_images/VPC2/30-my-key-pair.PNG)
 
-You should now see this screen again, click the blue "View Instances" button int he bottom right. 
+You should now see this screen again, click the blue "View Instances" button in the bottom right. 
 
 [![]({{ site.url }}/assets/article_images/VPC2/28-my-instance-launch.PNG)]({{ site.url }}/assets/article_images/VPC2/28-my-instance-launch.PNG)
 
-You should now be back in the below screen and you should be able to see your two insances. Click "Launch Instance" one last time to start configuring our NAT instance.
+You should now be back in the below screen and you should be able to see your two instances. Click "Launch Instance" one last time to start configuring our NAT instance.
 
 [![]({{ site.url }}/assets/article_images/VPC2/31-ec2-menu.PNG)]({{ site.url }}/assets/article_images/VPC2/31-ec2-menu.PNG)
 
@@ -103,11 +103,11 @@ Leave all the settings as default and click "Next: Add Tags"
 
 [![]({{ site.url }}/assets/article_images/VPC2/33-NAT-config-3.PNG)]({{ site.url }}/assets/article_images/VPC2/33-NAT-config-3.PNG)
 
-For the Key enter "Name" and Value enter "MyNATInstance" then click "Next: Configure Security Group"
+For the Key enter, "Name" and Value enter "MyNATInstance" then click "Next: Configure Security Group"
 
 [![]({{ site.url }}/assets/article_images/VPC2/33-NAT-config-4.PNG)]({{ site.url }}/assets/article_images/VPC2/33-NAT-config-4.PNG)
 
-Click "Select and existing security group", then make sure MyPublic-SecurityGroup is selected and click "Review and Launch".
+Click "Select an existing security group", then make sure MyPublic-SecurityGroup is selected and click "Review and Launch".
 
 [![]({{ site.url }}/assets/article_images/VPC2/33-NAT-config-5.PNG)]({{ site.url }}/assets/article_images/VPC2/33-NAT-config-5.PNG)
 
@@ -119,7 +119,7 @@ Review the information below, and once you deem it is correct click "Launch"
 
 [![]({{ site.url }}/assets/article_images/VPC2/33-NAT-config-7.PNG)]({{ site.url }}/assets/article_images/VPC2/33-NAT-config-7.PNG)
 
-We will be using the same Key as last time again, so make sure you select "Choose and existing key pair" and select "MyExampleVPCKEY" that we made before, Click "Launch Instances".
+We will be using the same Key as last time again, so make sure you select "Choose an existing key pair" and select "MyExampleVPCKEY" that we made before, Click "Launch Instances".
 
 [![]({{ site.url }}/assets/article_images/VPC2/33-NAT-config-8.PNG)]({{ site.url }}/assets/article_images/VPC2/33-NAT-config-8.PNG)
 
@@ -139,4 +139,4 @@ When you are presented with the popup below click the blue "Yes, Disable" button
 
 [![]({{ site.url }}/assets/article_images/VPC2/35-NAT-source-dest-check-2.PNG)]({{ site.url }}/assets/article_images/VPC2/35-NAT-source-dest-check-2.PNG)
 
-Thats all for today, but join me in [Part 3]({{ site.url }}/aws/2017/11/14/Creating-a-VPC-part-3.html "Part 3") for testing of the configuration.
+That's all for today, but join me in [Part 3]({{ site.url }}/aws/2017/11/14/Creating-a-VPC-part-3.html "Part 3") for testing of the configuration.

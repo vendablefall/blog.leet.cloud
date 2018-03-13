@@ -7,9 +7,9 @@ tags: featured
 image: /assets/article_images/glusterfs-ganesha/glusterfs-ant.png
 ---
 
-Hello again! Today on pebkac we are creating a two node GlusterFS cluster on CentOS-7 to host a highly available NFSv4 share. The volume (Glusterfs terminoligy for the virtualised disk group spread across CentOS nodes) will handle the file replication and locking. The volume will be shared out with nfs-Ganesha enabling the automatic failover of the NFS share, in the event that the node you have mounted the share on... dissapears.
+Hello again! Today on pebkac we are creating a two node GlusterFS cluster on CentOS-7 to host a highly available NFSv4 share. The volume (Glusterfs terminology for the virtualised disk group spread across CentOS nodes) will handle the file replication and locking. The volume will be shared out with NFS-Ganesha enabling the automatic failover of the NFS share, in the event that the node you have mounted the share on... disappears.
 
-If you're looking for a great guide to get you started I suggest you go to this post by [kkeithley](http://blog.gluster.org/2015/10/linux-scale-out-nfsv4-using-nfs-ganesha-and-glusterfs-one-step-at-a-time/) and complete the first two steps. I found that kkeithleys blog worked for the first two steps, "crawl and "walk", but I couldnt manage to complete the "run" section.  This blog post is more intended to be a continuation from kkeithlets post above adressing the areas where the [Glusterfs 3.9 release](https://gluster.readthedocs.io/en/latest/release-notes/3.9.0/) changed things.
+If you're looking for a great guide to get you started I suggest you go to this post by [kkeithley](http://blog.gluster.org/2015/10/linux-scale-out-nfsv4-using-nfs-ganesha-and-glusterfs-one-step-at-a-time/) and complete the first two steps. I found that kkeithleys blog worked for the first two steps, "crawl and "walk", but I couldn't manage to complete the "run" section.  This blog post is more intended to be a continuation from kkeithlets post above addressing the areas where the [Glusterfs 3.9 release](https://gluster.readthedocs.io/en/latest/release-notes/3.9.0/) changed things.
 
 Versions:
 - Centos-release: 7-3.1611.el7.centos.x86_64
@@ -18,7 +18,7 @@ Versions:
 - NFS-Ganesha-Gluster: 2.4.5-1.el7.x86_64
 - Glusterfs-Ganesha: 3.10.3-1.el7.x86_64
 
-Starting with two centos7 nodes in the same subnet with a second drive at /dev/sdb (if you dont you may have to adjust my files appropriately) 
+Starting with two centos7 nodes in the same subnet with a second drive at /dev/sdb (if you don't you may have to adjust my files appropriately) 
  
 On each node configure your network interface (NiC), and a virtual IP for that interface. To configure a virtual IP, create another NiC config file with ":1" appended, as below.
 
@@ -45,7 +45,7 @@ Configure your /etc/hosts file with the IP's and Virtual IP's of all the nodes i
 sudo vi /etc/hosts 
 ```
 
-Here I turn off the frewalld service. Warning: This is not, best practice, you should make exceptions on the FW for all the nodes in the cluster. How to do so will be explained next time when we scale out to 4 nodes. For now we will just disable the FW. Run this on both nodes.
+Here I turn off the firewalld service. Warning: This is not, best practice, you should make exceptions on the FW for all the nodes in the cluster. How to do so will be explained next time when we scale out to 4 nodes. For now, we will just disable the FW. Run this on both nodes.
 
 ```bash
 sudo systemctl stop firewalld.service   
@@ -85,7 +85,7 @@ sudo chkconfig glusterd on
 sudo service glusterd status  
  ```
 
-Here we setup paswordless ssh between the nodes, you will have to enter the root account password 4 times. Run the following from Node1.
+Here we setup passwordless ssh between the nodes, you will have to enter the root account password 4 times. Run the following from Node1.
 
 ```bash
 sudo ssh-keygen -f /var/lib/glusterd/nfs/secret.pem
