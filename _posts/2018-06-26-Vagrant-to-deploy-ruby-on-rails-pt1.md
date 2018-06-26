@@ -84,7 +84,7 @@ The following commands import a gpg key, pull down the rvm package and then add 
 	echo "gem install rails" >> ./rvm-setup.sh
     echo "gem install bundler" >> ./rvm-setup.sh
 
-Finally we can add the commands that will setup our ruby project.
+Finally we can add the commands that will setup our ruby on rails server. The following commands change to the /project/ dir, create a new ruby server called "testapp", change inot the testapp directory, use bundler to install all the gem dependancies, finally we start the ruby server.
 
     echo "cd /projects/" >> ./project-setup.sh
     echo "rails new testapp -B" >> ./project-setup.sh
@@ -92,18 +92,19 @@ Finally we can add the commands that will setup our ruby project.
     echo "bundle install --path /projects/" >> ./project-setup.sh
     echo "bin/rails server" >> ./project-setup.sh
 
-Last but deffinatley not least iont his optional step we forward the port ruby is being broadcast on (3000 nativly) to port 1337 (as this is leet.cloud after all). Add the following line to the VagrantFile:
-
-
-    config.vm.network "forwarded_port", guest: 3000, host: 1337
+Last but deffinatley not least, in this optional step we forward the port ruby is being broadcast on (3000 nativly) to port 1337 (as this is leet.cloud after all). 
 
     nano VagrantFile
 
-Now to test that this is all working we simply type the following command from out /vagrant/ directory:
+Add the following line to the VagrantFile:
+
+    config.vm.network "forwarded_port", guest: 3000, host: 1337
+
+Now to test this is all working, we simply type the following command from out /vagrant/ directory:
 
     cd /usr/vagrant/pebkac-demo/
     vagrant up
 
-You should be able to now open a web browser and navigate to localhost:1337 (or 3000 if you chose not to include the optional step) and hopefully you see the following:
+After waiting for a the image to build, you should be able to open a web browser and navigate to localhost:1337 (or 3000 if you chose not to include the optional step) and hopefully you see the following:
 
 [![]({{ site.url }}/assets/article_images/vagrant-ruby/rails_welcome.png)]({{ site.url }}/assets/article_images/vagrant-ruby/rails_welcome.png)
