@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Vagrant to deploy ruby on rails pt2"
-date:   2018-06-26 14:34:25
+date:   2018-07-26 14:34:25
 categories: "Dev-Ops"
 tags:
 image: /assets/article_images/vagrant-ruby/rails_welcome.png
@@ -21,3 +21,4 @@ Versions:
 Lets get started, Firstly we need to change to the directory that hosts our VagrantFile:
      
      cd /usr/vagrant/pebkac-demo/
+

@@ -13,8 +13,6 @@ Vagrant is an application that makes it super easy to automate provisioning of V
 
 This stack was a technical test for a job interview that I completed a few days ago, it had to be tracked on github (you can find my repo here https://github.com/vendablefall/test ) so they can, in their words, "see how I think". 
 
-It also had to use multiple layers (DB, APP and front end) and finally it had to serve a web page from port 80 (ive since changed it to 1337) that can make a call to the DB and then return a value of some sort.
-
 I consider myself 80% ops 20% dev, so developing the DB and APP was the biggest challenge in this whole process for me. Luckily my brother is a ruby web dev after talking to him about my upcomming challenge he sold me on the ruby on rails fullstack framework. To summarise, this was my first time using vagrant, first time using ruby and first time developing a three tier app. Exciting challenge to say the least.
 
 Versions:
@@ -33,20 +31,29 @@ We then run "vagrant init" from inside the project dir, this will create a Vagra
 
      vagrant init
 
-Next we need to setup the provider and box, a vm "box" is a base image or template that is customised to work with Vagrant and the provider is the endpoint you want to deploy to. In this example we will be using the hashicorp-precise64 box with VirtualBox as the provider. To do this we need to edit the VagrantFile and replace the line:
-'config.vm.box = "base"'' 
-with 
-'config.vm.box = "hashicorp/precise64"'
+Next we need to setup the provider and box, a vm "box" is a base image or template that is customised to work with Vagrant and the provider is the endpoint you want to deploy to. In this example we will be using the hashicorp-precise64 box with VirtualBox as the provider. To do this we need to edit the VagrantFile:
      
      nano VagrantFile
 
-Next we need to setup a bootstrap script to initialise the image when it boots and for Ruby Version Manager (rvm). To do this simply add the following lines below the 'config.vm.box = "hashicorp/precise64"' entry we just put in. We need to add the following line to the Vagrantfile: 
-config.vm.provision :shell, path: "bootstrap.sh"
-config.vm.provision :shell, path: "rvm-install.sh"
-config.vm.provision :shell, path: "rvm-setup.sh"
-config.vm.provision :shell, path: "project-setup.sh", privileged: false 
+and replace the line:
+
+    'config.vm.box = "base"'' 
+
+with 
+
+    'config.vm.box = "hashicorp/precise64"'
+
+
+Next we need to tell Vagrant how many bootstrap scripts to initialise when the image when it boots. To do this, simply add the following lines below the 'config.vm.box = "hashicorp/precise64"' entry we just put in. We need to add the following lines to the Vagrantfile: 
 
     nano VagrantFile
+
+Then add the following lines:
+
+    config.vm.provision :shell, path: "bootstrap.sh"
+    config.vm.provision :shell, path: "rvm-install.sh"
+    config.vm.provision :shell, path: "rvm-setup.sh"
+    config.vm.provision :shell, path: "project-setup.sh", privileged: false 
 
 Now we need to actually create the bootstrap files we just referenced in the VagrantFile.
 
@@ -55,7 +62,7 @@ Now we need to actually create the bootstrap files we just referenced in the Vag
 	touch rvm-setup.sh
 	touch project-setup.sh
 
- Then place our first bootstrap commands into said files, the below command will just update the repositories on the image and then install the curl tool (which will be used in the rvm-install.sh)
+We then start to place our bootstrap commands into said files, the below commands will update the repositories on the image, install the curl tool (which will be used in the rvm-install.sh), create a /projects/ directory and finally set the corect permissions on the /projects/ directory.
 
     echo "apt-get update" >> ./bootstrap.sh 
 	echo "apt-get install -y curl" >> ./bootstrap.sh
@@ -68,7 +75,7 @@ The following commands import a gpg key, pull down the rvm package and then add 
 	echo "\curl -sSL https://get.rvm.io | bash -s stable" >> ./rvm-install.sh
     echo "PATH=$PATH:/usr/local/rvm/scripts/rvm" >> ./rvm-install.sh
 	
- Next we need to add the following commands to the rvm-setup.sh script.
+ Next we need to add the following commands to the rvm-setup.sh script. These commands will load rvm (I had a few occaisions where rvm was not loaded through the path variable setup in the last step, so I added this just incase), then we use rvm to install ruby 2.2.5, use ruby 2.2.5, change to the /projects/ directory, install ruby on rails and finally install bundler.
 
     echo "source /usr/local/rvm/scripts/rvm" >> ./rvm-setup.sh
 	echo "rvm install 2.2.5" >> ./rvm-setup.sh
@@ -86,7 +93,9 @@ Finally we can add the commands that will setup our ruby project.
     echo "bin/rails server" >> ./project-setup.sh
 
 Last but deffinatley not least iont his optional step we forward the port ruby is being broadcast on (3000 nativly) to port 1337 (as this is leet.cloud after all). Add the following line to the VagrantFile:
-config.vm.network "forwarded_port", guest: 3000, host: 1337
+
+
+    config.vm.network "forwarded_port", guest: 3000, host: 1337
 
     nano VagrantFile
 
