@@ -7,6 +7,8 @@ tags: featured
 image: /assets/article_images/glusterfs-ganesha/glusterfs-ant.png
 ---
 
+<br>
+
 Hello again! Today on pebkac we are expanding on our two node GlusterFS from [last time]({{ site.url }}/linux/2017/08/17/sharing-a-glusterfs-volume-with-nfs-ganesha.html) taking in some of the feedback I recieved. We will be expanding the cluster out to four nodes, we wilkl stripe two of the nodes and replicated the striped volumes to the other two nodes, we will be implementing Linux Volume Manager (LVM), we will have two arbiter disk and trying not to mix in depricated commands. If youd like a better guide to get started I would suggest going back to my original post, or even futher to [kkeithley's](http://blog.gluster.org/2015/10/linux-scale-out-nfsv4-using-nfs-ganesha-and-glusterfs-one-step-at-a-time/) post.
 
 Versions:
@@ -161,13 +163,246 @@ sudo pcs cluster auth Node4
 
 ```
 
-Here we make our bricks directory, format the sdb drive, add the mount configuration to the /etc/fstab file, mount the drive and create our export dir. Do this on all four nodes.
+Here we will setup the LVM or Logical Volume Management, there are quite a few steps but they are all pretty easy, so dont get daunted, we need to complete these steps on all four nodes. There is a pretty good write up explaining what I am doing here in more detail by [Digital ocean](https://www.digitalocean.com/community/tutorials/an-introduction-to-lvm-concepts-terminology-and-operations)
+
+```bash
+Lsblk 
+```
+
+Open the format disk utill for the gluster disk (in this case /dev/sdb)
+
+```bash
+fdisk /dev/sdb
+```
+
+The first command you enter should be "n" for new partition:
+
+```bash
+Welcome to fdisk (util-linux 2.23.2). 
+
+Changes will remain in memory only, until you decide to write them. 
+
+Be careful before using the write command. 
+
+Device does not contain a recognized partition table 
+
+Building a new DOS disklabel with disk identifier 0x3ea83835. 
+
+Command (m for help): n 
+```
+Then type in "p" for primary partition:
+
+```bash
+
+Partition type: 
+
+   p   primary (0 primary, 0 extended, 4 free) 
+
+   e   extended 
+
+Select (default p): p 
+```
+Partiton number should be 1
+
+```bash
+Partition number (1-4, default 1): 1 
+```
+Leave the defaults for the first sector
+```bash
+First sector (2048-104857599, default 2048): <ENTER DEFAULT> 
+
+Using default value 2048 
+```
+
+Leave the default for the second sectore (defaults to whole disk)
+
+```bash
+Last sector, +sectors or +size{K,M,G} (2048-104857599, default 104857599): <ENTER DEFAULT> 
+
+Partition 1 of type Linux and of size 25 GiB is set 
+```
+
+Now enter the command "t"
+
+```bash
+Command (m for help): t 
+```
+
+If it asks you what partition select 1
+
+```bash
+Partition number (1, default 1): 1 
+```
+
+Enter the hex code 8e, which stands for Linux LVM
+
+```bash
+Hex code (type L to list all codes): 8e 
+
+Changed type of partition 'Linux' to 'Linux LVM' 
+```
+
+Finally we write the changes to disk with tghe "w" command
+
+```bash
+Command (m for help): w 
+
+The partition table has been altered! 
+Calling ioctl() to re-read partition table. 
+Syncing disks. 
+```
+
+Now check the disks are showing up as 8e or LVM disks 
+
+```bash
+fdisk -l | grep LVM 
+
+[root@demo yum.repos.d]# fdisk -l | grep LVM 
+
+/dev/sdb1            2048    52427775    26212864   8e  Linux LVM 
+
+```
+ 
+
+Now the disks are formatted we can create the physical volumes 
+
+```bash
+pvcreate /dev/sdb1
+
+[root@demo yum.repos.d]# pvcreate /dev/sdb1 
+
+  Physical volume "/dev/sdb1" successfully created. 
+
+```
+ 
+Let's create vg1 against the new physical volumes. 
+
+```bash
+vgcreate vg1 /dev/sdb1  
+
+ [root@demo yum.repos.d]# vgcreate vg1 /dev/sdb1  
+
+  Volume group "vg1" successfully created 
+
+[root@demo yum.repos.d]# 
+
+```
+ 
+Confirm creation with vgdisplay 
+
+```bash
+
+vgdisplay 
+
+```
+
+Your output should look similar to the below:
+
+```bash
+
+  --- Volume group --- 
+
+  VG Name               vg1 
+
+  System ID 
+
+  Format                lvm2 
+
+  Metadata Areas        2 
+
+  Metadata Sequence No  1 
+
+  VG Access             read/write 
+
+  VG Status             resizable 
+
+  MAX LV                0 
+
+  Cur LV                0 
+
+  Open LV               0 
+
+  Max PV                0 
+
+  Cur PV                2 
+
+  Act PV                2 
+
+  VG Size               49.99 GiB 
+
+  PE Size               4.00 MiB 
+
+  Total PE              12798 
+
+  Alloc PE / Size       0 / 0 
+
+  Free  PE / Size       12798 / 49.99 GiB 
+
+  VG UUID               Rjt3AJ-8qnK-Bsp8-0Rrl-IFCR-pcrz-Z6fEtE 
+
+```
+ 
+Now we need to create the logical volume group, using 100% of available disk 
+
+```bash
+lvcreate -n gluster-brick -l 100%FREE /dev/vg1 
+```
+
+You should see the following output
+
+```bash
+  Logical volume "gluster-brick" created. 
+```
+
+Confirm with lvdisplay 
+
+```bash
+lvdisplay 
+```
+
+You should see output similar to the following:
+
+```bash
+  --- Logical volume --- 
+
+  LV Path                /dev/vg1/gluster-brick
+
+  LV Name                gluster-brick
+
+  VG Name                vg1 
+
+  LV UUID                y0uQZi-qBF6-Sbky-gr8L-wDBO-wKIj-aFL1ME 
+
+  LV Write Access        read/write 
+
+  LV Creation host, time demo.qgi.qld.gov.au, 2018-05-08 15:17:55 +1000 
+
+  LV Status              available 
+
+  # open                 0 
+
+  LV Size                <25.00 GiB 
+
+  Current LE             6399 
+
+  Segments               1 
+
+  Allocation             inherit 
+
+  Read ahead sectors     auto 
+
+  - currently set to     8192 
+
+  Block device           253:7 
+```
+
+Here we make our bricks directory, format the volume group, add the mount configuration to the /etc/fstab file, mount the drive and create our export dir. Do this on all four nodes.
 
 ```bash
 sudo mkdir -p /bricks/demo  
-sudo mkfs.xfs /dev/sdb -f 
-sudo echo '/dev/sdb        /bricks/demo    xfs    defaults        0 0' >> /etc/fstab 
-sudo mount /dev/sdb /bricks/demo  
+mkfs -t ext4 /dev/vg1/gluster-brick
+sudo echo '/dev/vg1/gluster-brick        /bricks/demo    ext4    defaults        0 0' >> /etc/fstab 
+sudo mount /dev/vg1/gluster-brick /bricks/demo  
 sudo mkdir -p /bricks/demo/export 
 ```
 
@@ -200,7 +435,4 @@ sudo mount node1v:/notAsSimple /mnt/NFS-ganesha
 Hopefully everything is working now and with the help of [kkeithley's](http://blog.gluster.org/2015/10/linux-scale-out-nfsv4-using-nfs-ganesha-and-glusterfs-one-step-at-a-time/) post, [my original post]({{ site.url }}/linux/2017/08/17/sharing-a-glusterfs-volume-with-nfs-ganesha.html) and this post you have a good hang of what is required to setup a replicated gluster volume and then export it with NFSGanesha.
 
 Untill next time!
- 
- 
- 
  
