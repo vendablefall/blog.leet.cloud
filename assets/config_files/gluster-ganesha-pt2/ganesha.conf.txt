@@ -1,0 +1,23 @@
+#/var/run/gluster/shared_storage/nfs-ganesha/ganesha.conf 
+EXPORT 
+{ 
+        # Export Id (mandatory, each EXPORT must have a unique Export_Id) 
+        Export_Id = 69; 
+  
+        # Exported path (mandatory) 
+        Path = /simple; 
+  
+        # Exporting FSAL 
+       FSAL { 
+            Name = GLUSTER; 
+            Hostname = localhost; 
+            Volume = simple; 
+            } 
+        # Pseudo Path (required for NFS v4) 
+        Pseudo = /simple; 
+  
+        # Required for access (default is None) 
+        # Could use CLIENT blocks instead 
+        Access_Type = RW; 
+        Squash = No_root_squash #remove this for root squash   
+} 

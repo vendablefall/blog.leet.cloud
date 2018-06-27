@@ -1,0 +1,10 @@
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4 
+#::1         localhost localhost.localdomain localhost6 localhost6.localdomain6 
+192.168.4.11 Node1 
+192.168.4.12 Node1v 
+192.168.4.13 Node2 
+192.168.4.14 Node2v
+192.168.4.15 Node3
+192.168.4.16 Node3v 
+192.168.4.17 Node4 
+192.168.4.18 Node4v

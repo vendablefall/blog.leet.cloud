@@ -1,0 +1,20 @@
+#/var/run/gluster/shared_storage/nfs-ganesha/Ganesha-ha.conf 
+# Name of the HA cluster created. 
+# must be unique within the subnet 
+ 
+HA_NAME="citec-ganesha-cluster" 
+# 
+# The gluster server from which to mount the shared data volume. 
+#HA_VOL_SERVER="Node1" 
+# 
+# You may use short names or long names; you may not use IP addresses. 
+# Once you select one, stay with it as it will be mildly unpleasant to clean up$ 
+# 
+# The subset of nodes of the Gluster Trusted Pool that form the ganesha HA clus$ 
+HA_CLUSTER_NODES="Node1,Node2,Node3,Node4" 
+# 
+# Virtual IPs for each of the nodes specified above. 
+VIP_Node1="192.168.4.12" 
+VIP_Node2="192.168.4.14" 
+VIP_Node1="192.168.4.16" 
+VIP_Node2="192.168.4.18" 
