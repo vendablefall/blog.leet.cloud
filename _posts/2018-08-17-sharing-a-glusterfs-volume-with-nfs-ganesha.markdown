@@ -9,7 +9,7 @@ image: /assets/article_images/glusterfs-ganesha/glusterfs-ant.png
 
 <br>
 
-Hello again! Today on pebkac we are expanding on our two node GlusterFS from [last time]({{ site.url }}/linux/2017/08/17/sharing-a-glusterfs-volume-with-nfs-ganesha.html) taking in some of the feedback I recieved. We will be expanding the cluster out to four nodes, we will stripe two of the nodes and replicate the striped volumes to the other two nodes, we will be implementing Linux Volume Manager (LVM), we will have two arbiter disks and trying not to mix in depricated commands. If youd like a better guide to get started with gluster + ganesha, I would suggest going back to my [original post]({{ site.url }}/linux/2017/08/17/sharing-a-glusterfs-volume-with-nfs-ganesha.html), or even further back to [kkeithley's](http://blog.gluster.org/2015/10/linux-scale-out-nfsv4-using-nfs-ganesha-and-glusterfs-one-step-at-a-time/) post which describes the first few steps well.
+Hello again! Today on pebkac we are expanding on our two node GlusterFS from [last time]({{ site.url }}/linux/2017/08/17/sharing-a-glusterfs-volume-with-nfs-ganesha.html) taking in some of the feedback I received. We will expand the cluster out to four nodes; we will stripe two of the nodes and replicate the striped volumes to the other two nodes, we will be implementing Linux Volume Manager (LVM), we will have two arbiter disks and trying not to mix in deprecated commands. If you'd like a better guide to getting started with gluster + ganesha, I would suggest going back to my [original post]({{ site.url }}/linux/2017/08/17/sharing-a-glusterfs-volume-with-nfs-ganesha.html), or even further back to [kkeithley's](http://blog.gluster.org/2015/10/linux-scale-out-nfsv4-using-nfs-ganesha-and-glusterfs-one-step-at-a-time/) post which describes the first few steps well.
 
 Versions:
 - Centos-release: 7-3.1611.el7.centos.x86_64
@@ -18,11 +18,11 @@ Versions:
 - NFS-Ganesha-Gluster: 2.4.5-1.el7.x86_64
 - Glusterfs-Ganesha: 3.10.3-1.el7.x86_64
 
-Starting with four centos7 nodes in the same subnet, all with a second disk/drive at /dev/sdb, and two of them (Node1 and Node3) with a third equally sized drive at /dev/sdc (this will be the arbiter disks). See my Arcitecture diagram below:
+Starting with four centos7 nodes in the same subnet, all with a second disk/drive at /dev/sdb, and two of them (Node1 and Node3) with a third equally sized drive at /dev/sdc (the arbiter disks). See my Architecture diagram below:
 
 [![]({{ site.url }}/assets/article_images/glusterfs-ganesha/gluster-ganesha-pt2-diagram.png)]({{ site.url }}/assets/article_images/glusterfs-ganesha/gluster-ganesha-pt2-diagram.png)
  
-On each node, configure your network interface (NiC), and a virtual IP for that interface to match the above IP adress'. To configure a virtual IP, create another NiC config file with ":1" appended, in the same location as your original NiC config file, as below.
+On each node, configure your network interface (NiC), and a virtual IP for that interface to match the above IP address'. To configure a virtual IP, create another NiC config file with ":1" appended, in the same location as your original NiC config file, as below.
 
 My config files for the [NiC's' on Node1]({{ site.url}}/assets/config_files/gluster-ganesha-pt2/Node1-Nics.txt), [NiC's on Node2]({{ site.url}}/assets/config_files/gluster-ganesha-pt2/Node2-Nics.txt), [NiC's' on Node3]({{ site.url}}/assets/config_files/gluster-ganesha-pt2/Node3-Nics.txt) and [NiC's on Node4]({{ site.url}}/assets/config_files/gluster-ganesha-pt2/Node4-Nics.txt) My files are designed for a 192.168.4.0/24 subnet with a gateway of 192.168.4.1. Run the following commands on all nodes, replacing the contents of the files with my configs linked above.
 
@@ -42,7 +42,7 @@ ping 192.168.4.18
 
 ``` 
    
-Configure your /etc/hosts file with the IP's and Virtual IP's of all the nodes intended for the cluster, you can see [my /etc/hosts file.]({{ site.url}}/assets/config_files/gluster-ganesha-pt2/hosts.txt). Run this on all nodes, and replace the contents with my host file.
+Configure your /etc/hosts file with the IP's and Virtual IP's of all the nodes intended for the cluster; you can see [my /etc/hosts file.]({{ site.url}}/assets/config_files/gluster-ganesha-pt2/hosts.txt). Run this on all nodes, and replace the contents with my host file.
 
 
 ```bash
@@ -89,7 +89,7 @@ sudo chkconfig glusterd on
 sudo systemctl status glusterd   
  ```
 
-Here we setup passwordless ssh between the nodes, you will have to enter the root account password 4 times. Run the following from Node1.
+Here we setup passwordless ssh between the nodes, you have to enter the root account password 4 times. Run the following from Node1.
 
 ```bash
 sudo ssh-keygen -f /var/lib/glusterd/nfs/secret.pem
@@ -153,7 +153,7 @@ Set a password (in this case demopass) for the user ‘hacluster’. Use the sam
 sudo echo demopass | passwd --stdin hacluster  
 ```
 
-Perform cluster auth between the nodes, run the below code from Node1. You will need to enter the username "hacluster" and the password you set above in this case "demopass".
+Perform cluster auth between the nodes, run the below code from Node1. You need to enter the username "hacluster" and the password you set above in this case "demopass".
 
 ```bash
 sudo pcs cluster auth Node1 
@@ -163,7 +163,7 @@ sudo pcs cluster auth Node4
 
 ```
 
-Here we will setup the LVM or Logical Volume Management, there are quite a few steps but they are all pretty easy, so dont get daunted, we need to complete these steps on all four nodes. There is a pretty good write up explaining what I am doing here in more detail by [Digital ocean](https://www.digitalocean.com/community/tutorials/an-introduction-to-lvm-concepts-terminology-and-operations)
+Here we will setup the LVM or Logical Volume Management, there are quite a few steps, but they are all pretty straightforward, so don't get daunted, we need to complete these steps on all four nodes. There is a pretty good write up explaining what I am doing here in more detail by [Digital ocean](https://www.digitalocean.com/community/tutorials/an-introduction-to-lvm-concepts-terminology-and-operations)
 
 ```bash
 Lsblk 
@@ -202,7 +202,7 @@ Partition type:
 
 Select (default p): p 
 ```
-Partiton number should be 1
+Partition number should be 1
 
 ```bash
 Partition number (1-4, default 1): 1 
@@ -242,7 +242,7 @@ Hex code (type L to list all codes): 8e
 Changed type of partition 'Linux' to 'Linux LVM' 
 ```
 
-Finally we write the changes to disk with "w" 
+Finally, we write the changes to disk with "w" 
 
 ```bash
 Command (m for help): w 
@@ -252,7 +252,7 @@ Calling ioctl() to re-read partition table.
 Syncing disks. 
 ```
 
-Now check the disks are showing up as 8e or LVM disks 
+Now check the disks are showing up as 8e or LVM disks. 
 
 ```bash
 fdisk -l | grep LVM 
@@ -261,7 +261,7 @@ fdisk -l | grep LVM
     /dev/sdb1            2048    52427775    26212864   8e  Linux LVM 
 
 
-Now the disks are formatted we can create the physical volumes 
+Now the disks are formatted we can create the physical volumes. 
 
 ```bash
 pvcreate /dev/sdb1
@@ -277,7 +277,7 @@ Let's create vg1 against the new physical volumes.
 vgcreate vg1 /dev/sdb1  
 ```
     
-    Volume group "vg1" successfully created 
+    Volume group "vg1" successfully created. 
     
 
  
@@ -335,13 +335,13 @@ Your output should look similar to the below:
 
 ```
  
-Now we need to create the logical volume group, using 100% of available disk 
+Now we need to create the logical volume group, using 100% of the available disk. 
 
 ```bash
 lvcreate -n gluster-brick -l 100%FREE /dev/vg1 
 ```
 
-You should see the following output
+You should see the following output.
 
 ```bash
   Logical volume "gluster-brick" created. 
@@ -413,19 +413,19 @@ Then we enable ganesha. Still on Node1.
 sudo gluster nfs-ganesha enable  
 ```
 
-Finally we export the volume. Still on Node1.
+Finally, we export the volume. Still on Node1.
 
  ```bash
 sudo gluster vol set notAsSimple ganesha.enable on 
 ```
 
-Everything shoul now be up and running you can test mount the NFS volume using one of the virtual IP's.
+Everything should now be up and running you can test mount the NFS volume using one of the virtual IP's.
 
  ```bash
 sudo mount node1v:/notAsSimple /mnt/NFS-ganesha 
  ```
 
-Hopefully everything is working now and with the help of [kkeithley's](http://blog.gluster.org/2015/10/linux-scale-out-nfsv4-using-nfs-ganesha-and-glusterfs-one-step-at-a-time/) post, [my original post]({{ site.url }}/linux/2017/08/17/sharing-a-glusterfs-volume-with-nfs-ganesha.html) and this post you have a good hang of what is required to setup a replicated gluster volume and then export it with NFSGanesha.
+Hopefully, everything is working now and with the help of [kkeithley's](http://blog.gluster.org/2015/10/linux-scale-out-nfsv4-using-nfs-ganesha-and-glusterfs-one-step-at-a-time/) post, [my original post]({{ site.url }}/linux/2017/08/17/sharing-a-glusterfs-volume-with-nfs-ganesha.html) and this post you have a good hang of what is required to set up a replicated gluster volume and then export it with NFS-Ganesha.
 
-Untill next time!
+Until next time!
  
