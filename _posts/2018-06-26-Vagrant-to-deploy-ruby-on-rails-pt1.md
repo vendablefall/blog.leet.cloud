@@ -10,7 +10,7 @@ bg-color: white
 
 Hello, today on pebkac we will be using vagrant to automate the deployment and configuration of a ruby on rails web server, then in part two of this post we will expand the ruby on rails web server to a single node n-tier stack (3 tiers), in our case NodeJS for the app and SQLite3 for the DB.
 
-Vagrant is an application that makes it super easy to automate the provisioning of VM's; you can push the VM's to AWS, Azure, Vmware or VirtualBox by utilising different providers. Which has makes it a precious tool to any developer or dev-ops engineer, as once you have your stack working locally (utilising VirtualBox) you can change the provider to a public cloud endpoint and deploy your app into the cloud!
+[Vagrant](https://www.vagrantup.com/) is an application that makes it super easy to automate the provisioning of VM's; you can push the VM's to AWS, Azure, Vmware or [VirtualBox](https://www.virtualbox.org/) by utilising different providers. Which has makes it a precious tool to any developer or dev-ops engineer, as once you have your stack working locally (utilising VirtualBox) you can change the provider to a public cloud endpoint and deploy your app into the cloud!
 
 This stack was a technical test for a job interview that I completed a while ago; you can find my GitHub repo [here] (https://github.com/vendablefall/test )
 
@@ -23,7 +23,7 @@ Versions:
     Virtualbox - 5.1.26
     Nano - 2.5.3
 
-Let's get started; Firstly we need to create a vagrant dir, a dir for our project (pebkac-demo in this instance) I have chosen /usr/vagrant/ to be my location but you can choose where-ever you please.
+Let's get started; Firstly we need [Vagrant](https://www.vagrantup.com/downloads.html) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads) installed. Then we need to create a vagrant dir, a dir for our project (pebkac-demo in this instance) I have chosen /usr/vagrant/ to be my location but you can choose where-ever you please.
      
      sudo mkdir -p /usr/vagrant/pebkac-demo/
      cd /usr/vagrant/pebkac-demo/
