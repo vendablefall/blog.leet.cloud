@@ -178,28 +178,11 @@ fdisk /dev/sdb
 The first command you enter should be "n" for new partition:
 
 ```bash
-Welcome to fdisk (util-linux 2.23.2). 
-
-Changes will remain in memory only, until you decide to write them. 
-
-Be careful before using the write command. 
-
-Device does not contain a recognized partition table 
-
-Building a new DOS disklabel with disk identifier 0x3ea83835. 
-
 Command (m for help): n 
 ```
 Then type in "p" for primary partition:
 
 ```bash
-
-Partition type: 
-
-   p   primary (0 primary, 0 extended, 4 free) 
-
-   e   extended 
-
 Select (default p): p 
 ```
 Partition number should be 1
@@ -219,7 +202,6 @@ Leave the default for the second sector (defaults to 100%)
 ```bash
 Last sector, +sectors or +size{K,M,G} (2048-104857599, default 104857599): <ENTER DEFAULT> 
 
-Partition 1 of type Linux and of size 25 GiB is set 
 ```
 
 Now enter "t"
@@ -238,15 +220,21 @@ Enter the hex code 8e, which stands for Linux LVM
 
 ```bash
 Hex code (type L to list all codes): 8e 
-
-Changed type of partition 'Linux' to 'Linux LVM' 
 ```
 
+You should now see the following.
+
+```bash
+Changed type of partition 'Linux' to 'Linux LVM' 
+```
 Finally, we write the changes to disk with "w" 
 
 ```bash
 Command (m for help): w 
+```
+You should now see the following.
 
+```bash
 The partition table has been altered! 
 Calling ioctl() to re-read partition table. 
 Syncing disks. 
@@ -257,9 +245,10 @@ Now check the disks are showing up as 8e or LVM disks.
 ```bash
 fdisk -l | grep LVM 
 ```
-
-    /dev/sdb1            2048    52427775    26212864   8e  Linux LVM 
-
+You should now see the following.
+```bash
+/dev/sdb1            2048    52427775    26212864   8e  Linux LVM 
+```
 
 Now the disks are formatted we can create the physical volumes. 
 
@@ -267,30 +256,31 @@ Now the disks are formatted we can create the physical volumes.
 pvcreate /dev/sdb1
 ```
 
-    Physical volume "/dev/sdb1" successfully created. 
+You should now see the following.
 
-
+```bash
+Physical volume "/dev/sdb1" successfully created. 
+```
 
 Let's create vg1 against the new physical volumes. 
 
 ```bash
 vgcreate vg1 /dev/sdb1  
 ```
-    
-    Volume group "vg1" successfully created. 
-    
 
- 
+You should now see the following.
+
+```bash
+Volume group "vg1" successfully created. 
+```
+
 Confirm creation with vgdisplay 
 
 ```bash
-
 vgdisplay 
-
 ```
 
-Your output should look similar to the below:
-
+You should now see something similar to the following.
 ```bash
 
   --- Volume group --- 
@@ -341,8 +331,7 @@ Now we need to create the logical volume group, using 100% of the available disk
 lvcreate -n gluster-brick -l 100%FREE /dev/vg1 
 ```
 
-You should see the following output.
-
+You should now see the following.
 ```bash
   Logical volume "gluster-brick" created. 
 ```
@@ -353,8 +342,7 @@ Confirm with lvdisplay
 lvdisplay 
 ```
 
-You should see output similar to the following:
-
+You should now see the following.
 ```bash
   --- Logical volume --- 
 
@@ -401,6 +389,7 @@ sudo mkdir -p /bricks/demo/export
 
 Now we’ll create a "notAsSimple" gluster volume, striped across two Nodes, then replicated to the other two servers ,with an arbiter disk on Node1 and Node3.Then we will disable gluster nfs. Do this on Node1.
 <!--https://docs.gluster.org/en/v3/Administrator%20Guide/arbiter-volumes-and-quorum/-->
+
 ```bash 
 sudo gluster volume create notAsSimple stripe 2 replica 3 arbiter 1 Node1:/bricks/demo/export Node2:/bricks/demo/export Node1:/bricks/arbiter/export Node3:/bricks/demo/export Node4:/bricks/demo/export Node3:/bricks/arbiter/export
 sudo gluster volume set notAsSimple nfs.disable on  
