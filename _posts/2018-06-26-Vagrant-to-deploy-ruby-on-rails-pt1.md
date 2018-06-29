@@ -12,7 +12,7 @@ Hello, today on pebkac we will be using vagrant to automate the deployment and c
 
 [Vagrant](https://www.vagrantup.com/) is an application that makes it super easy to automate the provisioning of VM's; you can push the VM's to AWS, Azure, Vmware or [VirtualBox](https://www.virtualbox.org/) by utilising different providers. Which has makes it a precious tool to any developer or dev-ops engineer, as once you have your stack working locally (utilising VirtualBox) you can change the provider to a public cloud endpoint and deploy your app into the cloud!
 
-This stack was a technical test for a job interview that I completed a while ago; you can find my GitHub repo [here] (https://github.com/vendablefall/test )
+This stack was a technical test for a job interview that I completed a while ago; you can find my GitHub repo [here](https://github.com/vendablefall/test )
 
 I consider myself 80% ops 20% dev, so developing the DB and APP parts was the biggest challenge in this whole process for me. Luckily my brother is a ruby web dev after talking to him about the upcoming trial he sold me on the ruby on rails full-stack framework. To summarise, this was my first time using vagrant, first time using Ruby and first time developing a three-tier app. An exciting challenge to say the least.
 

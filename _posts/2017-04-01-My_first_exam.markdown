@@ -5,6 +5,7 @@ date:   2017-04-01 14:34:25
 categories: "Study"
 tags: 
 image: /assets/article_images/my-first-exam/vmware1.png
+bg-color: white
 ---
 
 For my first exam, I decided to go with the lowest hanging exam fruit, VMware, due to my two years of experience working with the vendor and their tech stack. However deciding to go with VMware was only half of the battle, as you can see below there are many exams offered by VMware, but which certification is right for you?

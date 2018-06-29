@@ -5,6 +5,7 @@ date:   2017-04-20 14:34:25
 categories: "About"
 tags: 
 image: /assets/article_images/2017-04-20-My_story_so_far/climbing-ladder-1940x900_34483.jpg
+bg-color: white
 ---
 
 2017 is my year... that's the motto. 

@@ -8,7 +8,7 @@
     <main class="content" role="main">
       <article class="post">
         {% if page.image %}
-        <div class="article-image">
+        <div class="article-image" style="background-color:{{ page.bg-color }}">
           <div class="post-image-image" style="background-image: url({% if page.image %}{{ page.image | prepend: site.baseurl }}{% endif %})">
             Article Image
           </div>

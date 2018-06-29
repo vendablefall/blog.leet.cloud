@@ -5,6 +5,7 @@ date:   2018-01-15 14:34:25
 categories: "AWS"
 tags: 
 image: /assets/article_images/studying-for-aws/AWS-Logo.jpg
+bg-color: white
 ---
 <br>
 Today I passed my AWS Advanced Networking Specialty exam; I won't say by how much I passed, suffice to say, that a pass, is a pass :-). This exam is tough, definitely a BIG step up from the associate level courses. Below I have listed all of the study resources I used to fail initially and then pass the exam.  I have put them in descending order from what I view as the most useful for the exam, too least useful.

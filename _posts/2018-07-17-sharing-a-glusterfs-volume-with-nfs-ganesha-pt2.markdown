@@ -5,6 +5,7 @@ date:   2018-07-17 06:34:25
 categories: "Linux"
 tags: featured
 image: /assets/article_images/glusterfs-ganesha/glusterfs-ant.png
+bg-color: white
 ---
 
 <br>

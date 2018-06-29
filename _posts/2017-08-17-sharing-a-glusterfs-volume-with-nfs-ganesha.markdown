@@ -5,6 +5,7 @@ date:   2017-08-17 06:34:25
 categories: "Linux"
 tags: featured
 image: /assets/article_images/glusterfs-ganesha/glusterfs-ant.png
+bg-color: white
 ---
 
 Hello again! Today on pebkac we are creating a two node GlusterFS cluster on CentOS-7 to host a highly available NFSv4 share. The volume (Glusterfs terminology for the virtualised disk group spread across CentOS nodes) will handle the file replication and locking. The volume will be shared out with NFS-Ganesha enabling the automatic failover of the NFS share, in the event that the node you have mounted the share on... disappears.

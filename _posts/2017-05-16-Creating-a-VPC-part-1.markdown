@@ -5,6 +5,7 @@ date:   2017-05-16 14:34:25
 categories: AWS
 tags: featured
 image: /assets/article_images/VPC/cloud-cartoon.jpg
+bg-color: white
 ---
 # Creating a VPC in AWS with public and private subnets.
 <br>

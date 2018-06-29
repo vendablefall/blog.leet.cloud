@@ -5,6 +5,7 @@ date:   2017-04-26 06:34:25
 categories: "Linux"
 tags: 
 image: /assets/article_images/2017-04-27-booting_kali_linux_in_uefi/kali.jpg
+bg-color: white
 ---
 Recently I installed Linux Mint on my laptop after years of being a windows user, it was quite the learning curve. I decided to install a secondary Linux distribution to disk in case anything untoward happened to my file system. I chose Kali Linux to be that distribution, as most aspiring nerds do I daydreamed of ethical hacking and general I.T badassery. All these dreams came to a crashing halt when I struggled for hours to get the image to boot via UEFI from my USB thumbstick. 
 
