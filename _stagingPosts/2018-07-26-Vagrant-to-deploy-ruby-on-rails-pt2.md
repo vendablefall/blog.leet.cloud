@@ -5,6 +5,7 @@ date:   2018-07-26 14:34:25
 categories: "Dev-Ops"
 tags:
 image: /assets/article_images/vagrant-ruby/rails_welcome.png
+bg-color: white
 ---
 
 Hello, today on pebkac we will be continuing on from [](this) post by adding our apop and db tiers to our basic ruby on rails web server. If you havent already I suggest you go back to the post so that we are starting from the same place.

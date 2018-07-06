@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Sharing a GlusterFS volume with NFS-Ganesha on CentOS-7"
+title:  "Sharing a GlusterFS volume with NFS-Ganesha on CentOS-7 pt1"
 date:   2017-08-17 06:34:25
 categories: "Linux"
 tags: featured
@@ -189,8 +189,10 @@ sudo gluster vol set simple ganesha.enable on
 sudo mount node1v:/simple /mnt/NFS-ganesha 
  ```
 
-Next time come back for some testing and thoughts on scaling out from a simple 2 node cluster. Thanks for following along.
+Next time come back for some testing and thoughts on scaling out from a simple 2 node cluster. 
+
+Thanks for following along.
  
  
- 
+ Untill next time...<!--[Next Time]({{ site.url }}/2018-08-10-sharing-a-glusterfs-volume-with-nfs-ganesha-pt2.html)--> 
  
