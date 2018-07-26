@@ -8,7 +8,9 @@ Hello! Firstly, I would like to say thank you for stopping by and taking a look 
 
 My name is Alex Simpson. I am originally from New Zealand and am now based in Brisbane, Australia. I'm an avid technology enthusiast and aspiring cross public cloud engineer. I have been working in I.T for 6 years now, and I love it. I originally studied commerce at university but found that the corporate life was not for me.  
 
-Some may be wondering what the name of this blog means. Pebkac, is an acronym for "problem exists between keyboard and chair", it is a go-to term around my organization for user error. I chose it as the name of this blog as a lot of the issues we face in I.T are "pebkac" related. Usually, because the person committing the pebkac is trying to learn something new and push their boundaries, as a wise woman once told me _"if you are not making mistakes, you are not learning"_ (thanks, mum). As "pebkac" is a large portion of the learning process and this blog is about me learning the public clouds (AWS, Azure and Google) it seemed like an apt name.
+//EDIT June 2018 I am now working as consulting cloud solutions engineer, specialising in AWS, thanks in large part to this blog and all the certifications I completed for AWS. im leaving the above to remember where I came from.
+
+Some may be wondering, what the name of this blog means. Pebkac, is an acronym for "problem exists between keyboard and chair", it is a go-to term around my organization for user error. I chose it as the name of this blog as a lot of the issues we face in I.T are "pebkac" related. Usually, because the person committing the pebkac is trying to learn something new and push their boundaries, as a wise woman once told me _"if you are not making mistakes, you are not learning"_ (thanks, mum). As "pebkac" is a large portion of the learning process and this blog is about me learning the public clouds (AWS, Azure and Google) it seemed like an apt name.
 
 So please follow along on my journey to be a cross public cloud engineer!
 
