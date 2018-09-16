@@ -8,7 +8,7 @@ image: /assets/article_images/glusterfs-ganesha/glusterfs-ant.png
 bg-color: white
 ---
 
-Hello, and welcome back to the third and final installment of the "Sharing a GlusterFS volume with NFS-Ganesha on CentOS-7" series. Today we will follow on from [Last Time]({{ site.url }}/2018-08-10-sharing-a-glusterfs-volume-with-nfs-ganesha-pt2.html) to setup the LVM or Logical Volume Management, there are quite a few steps, but they are all pretty straightforward, so don't get daunted, we need to complete these steps on all four nodes. There is a pretty good write up explaining what I am doing here in more detail by [Digital ocean](https://www.digitalocean.com/community/tutorials/an-introduction-to-lvm-concepts-terminology-and-operations)
+Hello, and welcome back to the third and final instalment of the "Sharing a GlusterFS volume with NFS-Ganesha on CentOS-7" series. Today we follow on from [Last Time]({{ site.url }}/2018-08-10-sharing-a-glusterfs-volume-with-nfs-ganesha-pt2.html) to set up the LVM or Logical Volume Management, there are quite a few steps, but they are all pretty straightforward, so don't get daunted, we need to complete these steps on all four nodes. There is a pretty good write up explaining what I am doing here in more detail by [Digital ocean](https://www.digitalocean.com/community/tutorials/an-introduction-to-lvm-concepts-terminology-and-operations)
 
 ```bash
 Lsblk 
@@ -232,7 +232,7 @@ sudo mount /dev/vg1/gluster-brick /bricks/demo
 sudo mkdir -p /bricks/demo/export 
 ```
 
-Now we’ll create a "notAsSimple" gluster volume, striped across two Nodes, then replicated to the other two servers ,with an arbiter disk on Node1 and Node3.Then we will disable gluster nfs. Do this on Node1.
+Now we’ll create a "notAsSimple" gluster volume, striped across two Nodes, then replicated to the other two servers, with an arbiter disk on Node1 and Node3. Then we disable gluster NFS. Do this on Node1.
 <!--https://docs.gluster.org/en/v3/Administrator%20Guide/arbiter-volumes-and-quorum/-->
 
 ```bash 
@@ -241,7 +241,7 @@ sudo gluster volume set notAsSimple nfs.disable on
 sudo gluster volume start notAsSimple  
 ```
 
-Then we enable ganesha. Still on Node1.
+Then we enable Ganesha. Still on Node1.
 
 ```bash 
 sudo gluster nfs-ganesha enable  
