@@ -16,13 +16,20 @@ Hello again and welcome back,
 Today's guide will detail how to get started with API Gateways, [Request Mapping Models](https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html) or (JSON Schema Models). I personally found the official documentation and guides a little "wanting" from a beginners walkthrough point of view, so decided to make a guide that walks through the basic elements needed to get started.
 
 
-When I was building a serverless API for a local charity I volunteer for, due to our architectural decisions() to keep all lambda functions code bundles separate from each other), I was writing a lot of boiler-plate code. One day I came across the [Mapping Models](https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html) they seemed to be an ideal solution for this, I can pull all my payload input validation out of my code and put it in API Gateway, where it can be assigned to many lambda functions without changing the codebase. 
+When I was building a serverless API for a local charity I volunteer for, due to our architectural decisions (to keep all lambda function code bundles separate from each other), I was writing a lot of boiler-plate code. One day I came across the [Mapping Models](https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html) they seemed to be an ideal solution for this, I can pull all my payload input validation out of my code and put it in API Gateway, where it can be assigned to many lambda functions without changing the codebase. 
 
 
-[Mapping Models](https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html) are [JSON Schema Models](https://json-schema.org/understanding-json-schema/). For the schema to be enforced on your API's methods, the methods need to have body validation enabled for the request, and they need to be assigned the correct model. If your schema is not being applied, please check both of the above are true and the API is re-deployed successfully. (you need to re-deploy your API, after these settings have changed)
+[Mapping Models](https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html) are [JSON Schema Models](https://json-schema.org/understanding-json-schema/). For the schema to be enforced on your API's methods, the methods need to have body validation enabled for the request, and they need to be assigned the correct model. To check these settings open the method with wich you want to apply the JSON schema model.
 
+[![]({{ site.url }}/assets/article_images/APIGW-RequestModels/Method-Execution.png)]({{ site.url }}/assets/article_images/APIGW-RequestModels/Method-Execution.png)
 
-I've created an example JSON schema to showcase the main functionality you need to get started (IMHO) objects, arrays and properties. 
+Open up the Method Request section:
+
+[![]({{ site.url }}/assets/article_images/APIGW-RequestModels/Method-Request.png)]({{ site.url }}/assets/article_images/APIGW-RequestModels/Method-Request.png)
+
+Ensure that your settings are similar to the above circled settings.
+
+I've created an example JSON schema to showcase the main functionality you need to get started (IMHO), objects, arrays and properties. 
 
 ```javascript
 {
