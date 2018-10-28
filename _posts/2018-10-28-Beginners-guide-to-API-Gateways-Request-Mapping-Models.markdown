@@ -16,10 +16,13 @@ Hello again and welcome back,
 Today's guide will detail how to get started with API Gateways, [Request Mapping Models](https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html) or (JSON Schema Models). I personally found the official documentation and guides a little "wanting" from a beginners walkthrough point of view, so decided to make a guide that walks through the basic elements needed to get started.
 
 
-While I was building a serverless API for a local charity I volunteer for, due to our architectural decisions (to keep each lambda functions code bundle separate), I was writing a lot of boiler-plate code, code that needed to be updated many times over, often manually. One day I came across the guide for API Gateway [Mapping Models](https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html) they seemed to be an ideal solution, I can remove all my codebased payload input validation and replace it with one mapping template, where it can be assigned to many lambda functions without changing any code! 
+While I was building a serverless API for a local charity I volunteer for,I was writing a lot of boiler-plate code, (due to our architectural decisions, to keep each lambda functions code bundle separate), code that needed to be updated many times over, often manually. One day I came across the guide for API Gateway [Mapping Models](https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html) they seemed to be an ideal solution, I could remove all my codebased body payload validation and replace it with one mapping template, where it can be assigned to many lambda functions without changing any code! 
 
+[Mapping Models](https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html) are [JSON Schema Models](https://json-schema.org/understanding-json-schema/). To create a Model, simply navigate to the Models section of your API (after signing in to the AWS Console of course), click the blue "Create" button, name the model appropriatley, for "Content type" enter "applicaton/json" and paste your JSON schema into the "Model schema" text field, you can see me creating my template below.
 
-[Mapping Models](https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html) are [JSON Schema Models](https://json-schema.org/understanding-json-schema/). For the schema to be enforced on your API's methods, the methods need to have body validation enabled for the request, and they need to be assigned the correct model. To check these settings open the method with wich you want to apply the JSON schema model.
+[![]({{ site.url }}/assets/article_images/APIGW-RequestModels/Model-Settings.png)]({{ site.url }}/assets/article_images/APIGW-RequestModels/Model-Settings.png)
+
+ For the schema to be enforced on your API's methods, the methods need to have body validation enabled for the request, and methods need to be assigned the correct model. To check these settings open the method with which you want to apply the JSON schema model.
 
 [![]({{ site.url }}/assets/article_images/APIGW-RequestModels/Method-Execution.png)]({{ site.url }}/assets/article_images/APIGW-RequestModels/Method-Execution.png)
 
@@ -37,13 +40,13 @@ I've created an example JSON schema to showcase the main functionality you need 
     "items": 
     {
         "type" : "object",
-        "required": ["clinic", "name"]
+        "required": ["clinic", "name"],
         "properties" : 
         {
             "clinic" : { "type" : "string"},
             "name" : { "type" : "string"},
             "number" : { "type" : ["string", "number", "null"]},
-            "postcode" : { "type" : ["string", "number", "null"]},      
+            "postcode" : { "type" : ["string", "number", "null"]}      
         }
     }
 }
@@ -67,7 +70,7 @@ The JSON payload must be an array.
 The array must be made up of objects.
 ```javascript
         "type" : "object",
-        "required": [...]
+        "required": [...],
         "properties" : 
         {
            ...    
@@ -77,7 +80,7 @@ The array must be made up of objects.
 
 The objects must contain any parameters defined in the "required" parameter. In this case "clinic" and "name".
 ```javascript
-        "required": ["clinic", "name"]
+        "required": ["clinic", "name"],
 ```
 
 Parameters of the object, whose keys match the defined keys below must be of the "type" specified. The following specifies "clinic" and "name" must be a "string" (and can not be null). "number" or "postcode" can be of type ["string", "number", "null"]
@@ -87,7 +90,7 @@ Parameters of the object, whose keys match the defined keys below must be of the
             "clinic" : { "type" : "string"},
             "name" : { "type" : "string"},
             "number" : { "type" : ["string", "number", "null"]},
-            "postcode" : { "type" : ["string", "number", "null"]},    
+            "postcode" : { "type" : ["string", "number", "null"]}    
         }
 ```
 
