@@ -22,15 +22,13 @@ While I was building a serverless API for a local charity I volunteer for, I was
 
 [![]({{ site.url }}/assets/article_images/APIGW-RequestModels/Model-Settings.png)]({{ site.url }}/assets/article_images/APIGW-RequestModels/Model-Settings.png)
 
- For the schema to be enforced on your API's methods, the methods need to have body validation enabled for the request, and methods need to be assigned the correct model. To check these settings open the method with which you want to apply the JSON schema model.
+ For the schema to be enforced on your API's methods, the methods need to have body validation enabled for the request, and methods need to be assigned the correct model. To check these settings, select the method with which you want to apply the JSON schema model and click the Method Request section
 
 [![]({{ site.url }}/assets/article_images/APIGW-RequestModels/Method-Execution.png)]({{ site.url }}/assets/article_images/APIGW-RequestModels/Method-Execution.png)
 
-Open up the Method Request section:
+Ensure that your settings are similar to the below.
 
 [![]({{ site.url }}/assets/article_images/APIGW-RequestModels/Method-Request.png)]({{ site.url }}/assets/article_images/APIGW-RequestModels/Method-Request.png)
-
-Ensure that your settings are similar to the above circled settings.
 
 I've created an example JSON schema to showcase the main functionality you need to get started (IMHO), objects, arrays and properties. 
 
