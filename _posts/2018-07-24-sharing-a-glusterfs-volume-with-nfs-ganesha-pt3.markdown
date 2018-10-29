@@ -8,7 +8,7 @@ image: /assets/article_images/glusterfs-ganesha/glusterfs-ant.png
 bg-color: white
 ---
 
-Hello, and welcome back to the third and final instalment of the "Sharing a GlusterFS volume with NFS-Ganesha on CentOS-7" series. Today we follow on from [Last Time]({{ site.url }}/2018-08-10-sharing-a-glusterfs-volume-with-nfs-ganesha-pt2.html) to set up the LVM or Logical Volume Management, there are quite a few steps, but they are all pretty straightforward, so don't get daunted, we need to complete these steps on all four nodes. There is a pretty good write up explaining what I am doing here in more detail by [Digital ocean](https://www.digitalocean.com/community/tutorials/an-introduction-to-lvm-concepts-terminology-and-operations)
+Hello, and welcome back to the third and final instalment of the "Sharing a GlusterFS volume with NFS-Ganesha on CentOS-7" series. Today we follow on from [Last Time]({{ site.url }}/2018-07-10-sharing-a-glusterfs-volume-with-nfs-ganesha-pt2.html) to set up the LVM or Logical Volume Management, there are quite a few steps, but they are all pretty straightforward, so don't get daunted, we need to complete these steps on all four nodes. There is a pretty good write up explaining what I am doing here in more detail by [Digital ocean](https://www.digitalocean.com/community/tutorials/an-introduction-to-lvm-concepts-terminology-and-operations)
 
 ```bash
 Lsblk 

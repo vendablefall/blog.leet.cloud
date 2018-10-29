@@ -194,5 +194,5 @@ Next time come back for some testing and thoughts on scaling out from a simple 2
 Thanks for following along.
  
  
- Untill next time...<!--[Next Time]({{ site.url }}/2018-08-10-sharing-a-glusterfs-volume-with-nfs-ganesha-pt2.html)--> 
+ [Untill Next Time...]({{ site.url }}/2018-07-10-sharing-a-glusterfs-volume-with-nfs-ganesha-pt2.html)
  
