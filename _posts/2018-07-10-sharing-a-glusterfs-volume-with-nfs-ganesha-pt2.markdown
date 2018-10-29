@@ -8,7 +8,7 @@ image: /assets/article_images/glusterfs-ganesha/glusterfs-ant.png
 bg-color: white
 ---
 
-Hello again! Today on pebkac we are expanding on our two node GlusterFS from [last time]({{ site.url }}/linux/2017/07/10/sharing-a-glusterfs-volume-with-nfs-ganesha-pt2.html) taking in some of the feedback I received. We will expand the cluster out to four nodes; we will stripe two of the nodes and replicate the striped volumes to the other two nodes, we will be implementing Linux Volume Manager (LVM), we will have two arbiter disks and trying not to mix in deprecated commands. If you'd like a better guide to getting started with gluster + ganesha, I would suggest going back to my [original post]({{ site.url }}/linux/2017/08/17/sharing-a-glusterfs-volume-with-nfs-ganesha.html), or even further back to [kkeithley's](http://blog.gluster.org/2015/10/linux-scale-out-nfsv4-using-nfs-ganesha-and-glusterfs-one-step-at-a-time/) post which describes the first few steps well.
+Hello again! Today on pebkac we are expanding on our two node GlusterFS from [last time]({{ site.url }}/linux/2017/08/17/sharing-a-glusterfs-volume-with-nfs-ganesha-pt1.html) taking in some of the feedback I received. We will expand the cluster out to four nodes; we will stripe two of the nodes and replicate the striped volumes to the other two nodes, we will be implementing Linux Volume Manager (LVM), we will have two arbiter disks and trying not to mix in deprecated commands. If you'd like a better guide to getting started with gluster + ganesha, I would suggest going back to my [original post]({{ site.url }}/linux/2017/08/17/sharing-a-glusterfs-volume-with-nfs-ganesha.html), or even further back to [kkeithley's](http://blog.gluster.org/2015/10/linux-scale-out-nfsv4-using-nfs-ganesha-and-glusterfs-one-step-at-a-time/) post which describes the first few steps well.
 
 <br>
 
@@ -164,6 +164,6 @@ sudo pcs cluster auth Node4
 
 ```
 
-Thats all for today, [join me Next TimeNext Time]({{ site.url }}/2018-07-24-sharing-a-glusterfs-volume-with-nfs-ganesha-pt3.html) where we create the volume manager and export the NFSGanesha share.
+Thats all for today, [join me Next Time]({{ site.url }}/linux/2018/07/24/sharing-a-glusterfs-volume-with-nfs-ganesha-pt3.html) where we create the volume manager and export the NFSGanesha share.
 
-Untill next time...
+[Untill next time...]({{ site.url }}/linux/2018/07/24/sharing-a-glusterfs-volume-with-nfs-ganesha-pt3.html)

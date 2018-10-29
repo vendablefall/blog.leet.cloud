@@ -8,7 +8,7 @@ image: /assets/article_images/glusterfs-ganesha/glusterfs-ant.png
 bg-color: white
 ---
 
-Hello, and welcome back to the third and final instalment of the "Sharing a GlusterFS volume with NFS-Ganesha on CentOS-7" series. Today we follow on from [Last Time]({{ site.url }}/2018-07-10-sharing-a-glusterfs-volume-with-nfs-ganesha-pt2.html) to set up the LVM or Logical Volume Management, there are quite a few steps, but they are all pretty straightforward, so don't get daunted, we need to complete these steps on all four nodes. There is a pretty good write up explaining what I am doing here in more detail by [Digital ocean](https://www.digitalocean.com/community/tutorials/an-introduction-to-lvm-concepts-terminology-and-operations)
+Hello, and welcome back to the third and final instalment of the "Sharing a GlusterFS volume with NFS-Ganesha on CentOS-7" series. Today we follow on from [Last Time]({{ site.url }}/linux/2018/07/10/sharing-a-glusterfs-volume-with-nfs-ganesha-pt2.html) to set up the LVM or Logical Volume Management, there are quite a few steps, but they are all pretty straightforward, so don't get daunted, we need to complete these steps on all four nodes. There is a pretty good write up explaining what I am doing here in more detail by [Digital ocean](https://www.digitalocean.com/community/tutorials/an-introduction-to-lvm-concepts-terminology-and-operations)
 
 ```bash
 Lsblk 
@@ -259,7 +259,7 @@ Everything should now be up and running you can test mount the NFS volume using 
 sudo mount node1v:/notAsSimple /mnt/NFS-ganesha 
  ```
 
-Hopefully, everything is working now and with the help of [kkeithley's](http://blog.gluster.org/2015/10/linux-scale-out-nfsv4-using-nfs-ganesha-and-glusterfs-one-step-at-a-time/) post, [my original post]({{ site.url }}/linux/2017/08/17/sharing-a-glusterfs-volume-with-nfs-ganesha.html), [my second post]({{ site.url }}/2018-08-10-sharing-a-glusterfs-volume-with-nfs-ganesha-pt2.html) and this post, you have a good hang of what is required to set up a replicated gluster volume and then export it with NFS-Ganesha.
+Hopefully, everything is working now and with the help of [kkeithley's](http://blog.gluster.org/2015/10/linux-scale-out-nfsv4-using-nfs-ganesha-and-glusterfs-one-step-at-a-time/) post, [my original post]({{ site.url }}/linux/2017/08/17/sharing-a-glusterfs-volume-with-nfs-ganesha-pt1.html), [my second post]({{ site.url }}/linux/2018/07/10/sharing-a-glusterfs-volume-with-nfs-ganesha-pt2.html) and this post, you have a good hang of what is required to set up a replicated gluster volume and then export it with NFS-Ganesha.
 
 Until next time!
  
