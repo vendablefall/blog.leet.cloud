@@ -3,7 +3,7 @@ layout: post
 title:  "Sharing a GlusterFS volume with NFS-Ganesha on CentOS-7 pt1"
 date:   2017-08-17 06:34:25
 categories: "Linux"
-tags: featured
+tags: 
 image: /assets/article_images/glusterfs-ganesha/glusterfs-ant.png
 bg-color: white
 ---
