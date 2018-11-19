@@ -259,7 +259,7 @@ Everything should now be up and running you can test mount the NFS volume using 
 sudo mount node1v:/notAsSimple /mnt/NFS-ganesha 
  ```
 
-Hopefully, everything is working now and with the help of [kkeithley's](http://blog.gluster.org/2015/10/linux-scale-out-nfsv4-using-nfs-ganesha-and-glusterfs-one-step-at-a-time/) post, [my original post]({{ site.url }}/linux/2017/08/17/sharing-a-glusterfs-volume-with-nfs-ganesha-pt1.html), [my second post]({{ site.url }}/linux/2018/07/10/sharing-a-glusterfs-volume-with-nfs-ganesha-pt2.html) and this post, you have a good hang of what is required to set up a replicated gluster volume and then export it with NFS-Ganesha.
+Hopefully, everything is working now and with the help of [kkeithley's](http://blog.gluster.org/2015/10/linux-scale-out-nfsv4-using-nfs-ganesha-and-glusterfs-one-step-at-a-time/) post, [my original post]({{ site.url }}/linux/2017/08/17/sharing-a-glusterfs-volume-with-nfs-ganesha.html), [my second post]({{ site.url }}/linux/2018/07/10/sharing-a-glusterfs-volume-with-nfs-ganesha-pt2.html) and this post, you have a good hang of what is required to set up a replicated gluster volume and then export it with NFS-Ganesha.
 
 Until next time!
  
