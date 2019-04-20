@@ -10,7 +10,7 @@ description: > # this means to ignore newlines until "email:"
 
 timezone: Australia/Brisbane #	+10:00	+10:00
 
-email: info@leet.cloud
+email: alexjsimpson@gmail.com
 #blog logo
 logo: "/assets/images/pebcak-logo-300x300.png"
 float_logo: true # true, false (default)
