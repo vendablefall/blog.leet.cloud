@@ -8,6 +8,11 @@ image: /assets/article_images/glusterfs-ganesha/glusterfs-ant.png
 bg-color: white
 ---
 
+Other posts in this series:
+- [Part One]({{ site.url }}/linux/2017/08/17/sharing-a-glusterfs-volume-with-nfs-ganesha.html)
+- Part Two (this post)
+- [Part Three]({{ site.url }}/linux/2018/07/24/sharing-a-glusterfs-volume-with-nfs-ganesha-pt3.html)
+
 Hello again! Today on pebkac we are expanding on our two node GlusterFS from [last time]({{ site.url }}/linux/2017/08/17/sharing-a-glusterfs-volume-with-nfs-ganesha.html) taking in some of the feedback I received. We will expand the cluster out to four nodes; we will stripe two of the nodes and replicate the striped volumes to the other two nodes, we will be implementing Linux Volume Manager (LVM), we will have two arbiter disks and trying not to mix in deprecated commands. If you'd like a better guide to getting started with gluster + ganesha, I would suggest going back to my [original post]({{ site.url }}/linux/2017/08/17/sharing-a-glusterfs-volume-with-nfs-ganesha.html), or even further back to [kkeithley's](http://blog.gluster.org/2015/10/linux-scale-out-nfsv4-using-nfs-ganesha-and-glusterfs-one-step-at-a-time/) post which describes the first few steps well.
 
 <br>

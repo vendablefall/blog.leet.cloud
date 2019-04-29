@@ -9,6 +9,10 @@ bg-color: white
 ---
 
 <!-- <meta http-equiv="refresh" content="0; URL='({{ site.url }}/linux/2017/08/17/sharing-a-glusterfs-volume-with-nfs-ganesha.html)'" /> -->
+Other posts in this series:
+- Part One (this post)
+- [Part Two]({{ site.url }}/linux/2018/07/10/sharing-a-glusterfs-volume-with-nfs-ganesha-pt2.html)
+- [Part Three]({{ site.url }}/linux/2018/07/24/sharing-a-glusterfs-volume-with-nfs-ganesha-pt3.html)
 
 Hello again! Today on pebkac we are creating a two node GlusterFS cluster on CentOS-7 to host a highly available NFSv4 share. The volume (Glusterfs terminology for the virtualised disk group spread across CentOS nodes) will handle the file replication and locking. The volume will be shared out with NFS-Ganesha enabling the automatic failover of the NFS share, in the event that the node you have mounted the share on... disappears.
 
